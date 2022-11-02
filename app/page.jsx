@@ -1,12 +1,14 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import Link from 'next/link'
 
-export default function Home() {
+export default async function Home() {
+  const data = await getData();
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js 13!</a>
+          Welcome to <a href="https://github.com/valinatic/area13">Area 13!</a>
         </h1>
 
         <p className={styles.description}>
@@ -54,4 +56,9 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+async function getData() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  return res.json();
 }
